@@ -87,6 +87,7 @@
       <h1 class="h1">Weather Pant Besk</h1>
       <p>Inserisci la città di cui vuoi visualizzare il meteo adesso</p>
     </div>
+    
 
     <div class="mb-3">
       <input type="text" placeholder="Inserisci la città" class="form-control input_text" id="cityInput" #citta>
@@ -97,11 +98,25 @@
       <img src="" alt="Immagine città" class="city-image" id="cityImage">
       <div class="card" id="weatherCard">
         <h1 class="card-title name" id="name">{{nome}}</h1>
-        <p class="card-text temp">{{temp}}</p>
-        <div *ngIf="loading">
-          <p class="card-text feelslike">temperatura kevin a {{nome}} : {{feelslike}}</p>
-        </div>
-        <p class="card-text clouds">{{clouds}}</p>
+        <div>
+        <p class="card-text temp">temperatura a {{nome}} : {{temp}}</p>
+      </div>
+      <div>
+        <p class="card-text feelslike">temperatura sentita a {{nome}} : {{feelslike}}</p>
+      </div>
+    <div>
+      <p class="card-text temp_massima">temperatura massima a {{nome}} : {{temp_massima}}</p>
+    </div>
+  <div>
+        <p class="card-text temp_minima">temperatura minima a {{nome}} : {{temp_minima}}</p>
+      </div>
+    <div>
+        <p class="card-text alba">l'alba sorge : {{alba}}</p>
+      </div>
+      <div>
+        <p class="card-text tramonto">il sole tramonta : {{tramonto}}</p>
+      </div>
+        <p class="card-text clouds">percentuale nuvole a {{nome}} : {{clouds}}</p>
         <p class="card-text desc">{{desc}}</p>
       </div>
     </div>
