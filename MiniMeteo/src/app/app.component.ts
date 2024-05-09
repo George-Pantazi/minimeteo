@@ -21,7 +21,6 @@ export class AppComponent {
   ngOnInit() {}
 
   prendiMeteo(citta: any) {
-    alert(citta);
     fetch('https://api.openweathermap.org/data/2.5/weather?q='+citta+'&appid='+this.apikey+'fd58d3198ab92761f1282d12dae7cd0a')
     .then(response => response.json())
     .then(data => {

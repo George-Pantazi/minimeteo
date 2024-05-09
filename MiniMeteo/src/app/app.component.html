@@ -73,6 +73,12 @@
       font-size: 18px;
       margin-bottom: 10px;
     }
+    .city-image {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
@@ -88,11 +94,12 @@
         <button (click)="prendiMeteo(citta.value)" class="btn btn-primary submit" id="submitButton">Submit</button>
         <button onclick="resetInput()" class="btn btn-reset" id="resetButton">Reset</button>
       </div>
+      <img src="" alt="Immagine città" class="city-image" id="cityImage">
       <div class="card" id="weatherCard">
         <h1 class="card-title name" id="name">{{nome}}</h1>
         <p class="card-text temp">{{temp}}</p>
         <div *ngIf="loading">
-          <p class="card-text feelslike">percepiti : {{feelslike}}</p>
+          <p class="card-text feelslike">temperatura kevin a {{nome}} : {{feelslike}}</p>
         </div>
         <p class="card-text clouds">{{clouds}}</p>
         <p class="card-text desc">{{desc}}</p>
@@ -103,6 +110,28 @@
   <script>
     function resetInput() {
       document.getElementById('cityInput').value = '';
+      document.getElementById('name').textContent = '';
+      document.querySelector('.temp').textContent = '';
+      document.querySelector('.feelslike').textContent = '';
+      document.querySelector('.clouds').textContent = '';
+      document.querySelector('.desc').textContent = '';
+      document.getElementById('cityImage').src = ''; // Reset dell'immagine
+    }
+
+    // Funzione per ottenere un'immagine casuale della città da Google Maps
+    function getCityImage(city) {
+      fetch(`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=tjT9QdFi9DegIby23GaoKAQGia6cifmwAUKyWSRNeXf3L5Wb4LUsWYHr&key=eD8G74bbPanQLeHyTYwumxgqZ2zRrZCmvDs7FkoaX8`)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Errore nel recupero dell\'immagine');
+          }
+          return response.blob();
+        })
+        .then(blob => {
+          const imageUrl = URL.createObjectURL(blob);
+          document.getElementById('cityImage').src = imageUrl;
+        })
+        .catch(error => console.error('Errore nel recupero dell\'immagine:', error));
     }
   </script>
 </body>
