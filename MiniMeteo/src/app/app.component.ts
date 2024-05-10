@@ -17,7 +17,6 @@ export class AppComponent {
   feelslike: any;
   alba: any;
   tramonto: any;
-  apikey = '';
   loading = false;
 
   constructor() {}
@@ -25,7 +24,7 @@ export class AppComponent {
   ngOnInit() {}
 
   prendiMeteo(citta: any) {
-    fetch('https://api.openweathermap.org/data/2.5/weather?q='+citta+'&appid='+this.apikey+'fd58d3198ab92761f1282d12dae7cd0a&units=metric')
+    fetch('https://api.openweathermap.org/data/2.5/weather?q='+citta+'&appid='+'fd58d3198ab92761f1282d12dae7cd0a&units=metric')
     .then(response => response.json())
     .then(data => {
       this.temp = data['main']['temp']+ '° C';
